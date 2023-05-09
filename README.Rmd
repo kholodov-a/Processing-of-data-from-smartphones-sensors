@@ -1,0 +1,43 @@
+---
+title: "Course project"
+author: "Alexey Kholodov"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+## General
+This dataset represents the results of execution of 'run_analysis.R' script. The scripts uses the dataset from this source:  
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+A full description is available at the site where the data was obtained:  
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
+
+
+## This dataset includes the following files:
+
+
+- 'README.md': This file
+
+- ‘run_analysis.R’: Script on R to get (1) the merged dataset with selected variables, subject ids and activity labels and (2) and the tidy dataset with an average of each 66 variables for each activity and each subject.  
+
+- 'fullDS.txt': 66 variables with means and standard deviation measurements from merged the training and the test datasets, augmented by relevant subject ids and activity labels.
+
+- 'tidyDS.txt': The average of each 66 variables for each activity and each subject.
+
+- ‘CodeBook.md': The detailed description of the resulting datasets.
+
+
+
+## The description of the work of ‘run_analysis.R’
+
+1.	The script checks if the source dataset exists. If it doesn't exist (or is not unpacked) then it downloads, extracts it and sets the working directory to it.
+2.	Reads Activities labels.
+3.	Reads and binds X_test and X_train datasets.
+4.	The script reads Y_test and Y_train datasets and mutates the activity number in the first columns of both datasets to the descriptive activity names from the activity labels dataset. 
+5.	Binds both datasets (Y_test and Y_train) together in the same order as X-datasets ("_train" after "_test") were bound.
+6.	Reads and merges subject labels (again "_test" should go before "_train").
+7.	Reads the names of variables from "feature.txt" and applies them to the dataset.
+8.	Identifies variables with measurements of mean and standard deviation and selects them for the new dataset.
+9.	Merges as columns subjects, Y labels and selected variables from the previous step AND saves the resulting table to the working directory as "fullDS.txt".
+10.	Creates and saves to the working directory a second, independent tidy dataset with the average of each variable for each activity and each subject.
+
